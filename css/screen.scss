@@ -159,6 +159,11 @@ img {
 */
 
 html {
+  font-size: calc($root-font-size/16*100%);
+  font-family: $font-family-primary;
+  line-height: 1.5rem;
+  color: $color-text;
+  scroll-behavior: smooth;
 }
 
 /*
@@ -166,6 +171,9 @@ html {
 */
 
 ::selection {
+  background-color: $color-primary-light;
+  color: white
+
 }
 
 /*
@@ -175,17 +183,21 @@ html {
 */
 
 h1 {
+
 }
 
 h2 {
+
 }
 
 h3 {
+
 }
 
 h4,
 h5,
 h6 {
+
 }
 
 p,
@@ -195,26 +207,33 @@ dl,
 table,
 address,
 figure {
+
 }
 
 ul,
 ol {
+
 }
 
 li ul,
 li ol {
+
 }
 
 blockquote {
+
 }
 
 figcaption {
+
 }
 
 hr {
+
 }
 
 a {
+
 }
 
 a:hover {
