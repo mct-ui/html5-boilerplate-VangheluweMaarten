@@ -7,6 +7,26 @@
   @return map-get(map-get($palettes, $palette), $color);
 }
 
+// Media Query mixin
+// @include mq(#point, #query1, #query2);
+//
+
+@mixin mq($breakpoint, $query1: min, $query2: width) {
+  $query: map-get($breakpoints, $breakpoint);
+  
+  @if $query != null {
+  @media (#{$query1}-#{$query2}: #{$query}) {
+  @content;
+  }
+  } @else {
+  @media (#{$query1}-#{$query2}: $breakpoint) {
+  @content;
+  }
+  }
+  }
+  
+
+
 /*---------------------------------------/*
  # SETTINGS
 /*---------------------------------------*/
@@ -120,6 +140,18 @@ $space-xl: calc($space-m * 2); // 48px
 $space-xxl: calc($space-l * 2); // 64px
 $space-xxxl: calc($space-xl * 2); // 96px
 
+// ---
+  // Settings: Breakpoints
+  // ---
+  
+$breakpoints: (
+  bp1: calc(577 / 16 * 1em),
+  bp2: calc(769 / 16 * 1em),
+  bp3: calc(993 / 16 * 1em),
+  bp4: calc(1201 / 16 * 1em),
+  bp5: calc(1401 / 16 * 1em),
+) !default;
+
 /*---------------------------------------/*
  # GENERIC
 /*---------------------------------------*/
@@ -186,6 +218,14 @@ h1 {
   font-weight: 700;
   line-height: calc($baseline*4);
   margin-bottom: $space-m;
+  @include mq(bp1){
+    font-size: $ms9;
+    line-height: calc($baseline*6);
+  }
+  @include mq(bp2) {
+    font-size: $ms11;
+    line-height: calc($baseline*8);
+  }
 }
 
 h2 {
@@ -255,16 +295,20 @@ hr {
 }
 
 a {
-
-}
-
-a:hover {
+  color: $color-primary;
+  transition: all 0.1s ease-in-out;
 }
 
 a:visited {
+  color: $color-primary;
+}
+
+a:hover {
+  color: $color-primary-light;
 }
 
 a:active {
+  color: $color-primary-dark;
 }
 
 /*---------------------------------------/*
@@ -278,8 +322,16 @@ a:active {
 */
 
 .o-row {
+  padding: $space-m $space-m 0;
+  display: flow-root;
 }
-
+.o-row--primary{
+  background-color: $color-primary;
+}
+.o-row--dark {
+  background-color: get-color(color-gray, 900);
+  color:white;
+}
 /*
     Objects: Container
     ---
@@ -287,6 +339,9 @@ a:active {
 */
 
 .o-container {
+  
+  margin: auto;
+  max-width: 50rem;
 }
 
 /*
@@ -298,6 +353,8 @@ a:active {
 /*---------------------------------------/*
  # COMPONENTS
 /*---------------------------------------*/
+
+
 
 /*---------------------------------------/*
  # UTILITIES
